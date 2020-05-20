@@ -11,5 +11,27 @@ uniform sampler2D image;
 out vec4 FragColor;
 
 void main() {
+	float w = 1.0/ width;
+	float h = 1.0/ height;
+
+ 	vec3 bottom_left   = texture(image, texcoord + vec2(-w, -h));
+ 	vec3 bottom_center = texture(image, texcoord + vec2(0.0, -h));
+ 	vec3 bottom_right  = texture(image, texcoord + vec2(w, -h));
+ 	vec3 middle_left   = texture(image, texcoord + vec2(-w, 0.0));
+ 	vec3 middle_center = texture(image, texcoord);
+ 	vec3 middle_right  = texture(image, texcoord + vec2(w, 0.0));
+ 	vec3 top_left      = texture(image, texcoord + vec2(-w, h));
+ 	vec3 top_center    = texture(image, texcoord + vec2(0.0, h));
+ 	vec3 top_right     = texture(image, texcoord + vec2(w, h));
+
+ 	vec3 sobel_h = bottom_right + (2.0 * center_right) + top_right - bottom_left - (2.0*center_left) - top_left;
+ 	vec3 sobel_v = bottom_left + (2.0 * bottom_center) + bottom_right - top_left - (2.0 * top_center) - top_right;
+ 	sobel_edge = sqrt(sobel_h2 + sobel_v2);
+
+ 	if(sobel_edge >= 0.5){
+ 		FragColor = vec4(0.0,0.0,0.0,1.0);
+ 	}
+
+
     FragColor = texture(image, texcoord);
 }
