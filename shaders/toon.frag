@@ -9,5 +9,9 @@ uniform sampler2D image;
 out vec4 FragColor;
 
 void main() {
-    FragColor = texture(image, texcoord);
+	vec4 temp_FC = texture(image, texcoord);
+
+	temp_FC = round(temp_FC * 4.0) / 4.0;
+
+    FragColor = temp_FC;
 }
