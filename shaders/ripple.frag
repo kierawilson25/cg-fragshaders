@@ -14,7 +14,9 @@ void main() {
     float radius = length(texture_coord);
     vec2 coord_offset = texture_coord * (sin(radius * 30.0 - time * 5.0) + 0.5) / 60.0;
 
-	vec2 final_texture = (texture_coord + coord_offset +1) * 0.5;
+	vec2 final_texture = texture_coord + coord_offset;
+
+	final_texture = (final_texture +1.0)* 0.5;
 
 
     FragColor = texture(image, final_texture);
