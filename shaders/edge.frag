@@ -30,8 +30,7 @@ void main() {
 
  	if(length(sobel_edge) >= 0.5){
  		FragColor = vec4(0.0,0.0,0.0,1.0);
+ 	} else {
+ 		FragColor = texture(image, texcoord);
  	}
-
-
-    FragColor = texture(image, texcoord);
 }
