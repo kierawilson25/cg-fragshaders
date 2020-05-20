@@ -18,5 +18,5 @@ void main() {
     
 
 
-     FragColor = final_texture * texture(image, texcoord);
+     FragColor = texture(image, final_texture);
 }
